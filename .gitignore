@@ -1,0 +1,15 @@
+# Visual Studio 2015 cache/options directory
+.vs/
+bower_components/
+node_modules/
+
+
+#Exclude tsc generated files
+js/*.map
+js/ts.js
+
+# Ignore built ts files
+dist/**/*
+
+# Ignore parcel files
+.parcel-cache/
