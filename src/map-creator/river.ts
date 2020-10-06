@@ -17,11 +17,25 @@ class River implements Feature {
     this.type = FEATURES.RIVER;
   }
 
+  private addRiver(bidimensionalMap: BidimensionalMap): BidimensionalMap {
+    const result = [...bidimensionalMap];
+
+    const startRow = Math.floor(this.rows / 2) + getRandomSign() * Math.floor(this.rows / 4);
+    const startColumn = Math.floor(this.columns / 2) + getRandomSign() * Math.floor(this.columns / 4);
+
+    result[startRow][startColumn] = RIVER;
+
+    return result;
+  } 
+
   private generateBidimensionalMap(): BidimensionalMap {
-    const r = Math.floor(this.rows / 2) + getRandomSign() * Math.floor(this.rows / 4);
-    const c = Math.floor(this.columns / 2) + getRandomSign() * Math.floor(this.columns / 4);
-    const result = initializeBidimensionalMap(this.rows, this.columns);
-    result[r][c] = RIVER;
+    
+    let result = initializeBidimensionalMap(this.rows, this.columns);
+
+    for (let i = 0; i < this.quantity; i++) {
+      result = this.addRiver(result);
+    }
+    
     return result;
   }
 

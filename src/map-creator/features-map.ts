@@ -9,17 +9,20 @@ class FeatureMap implements FeaturedMappable {
   private bidimensionalMap: BidimensionalMap;  
   features: Feature[];
   bottom: Mappable;
+  // Different optional features
+  rivers: number;
 
-  // TODO: Instead of fixed, the features have to be an options in the constructor
-  constructor(rows: number, columns: number) {
+  // TODO: the different features should be in an options object
+  constructor(rows: number, columns: number, rivers: number ) {
     this.rows = rows;
     this.columns = columns;
+    this.rivers = rivers;
     this.bottom = new SurfaceMap(this.rows, this.columns);
     this.features = this.generateFeatures();
   }
   
   private generateFeatures(): Feature[] {
-    return [new River(this.rows, this.columns)];
+    return [new River(this.rows, this.columns, this.rivers)];
   }
 
   private generateBidimensionalMap(): BidimensionalMap {
